@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icarus Church</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h2><a href="#">Icarus Church</a></h2>
+        <ul class="nav">
+            <li><a href="Homepage.html">Home</a></li>
+            <li><a href="Homepage.html#about">About</a></li>
+            <li><a href="Homepage.html#services">Services</a></li>
+            <li><a href="Homepage.html#contact">Contact</a></li>
+        </ul>
+    </header>
+        <section id="calendar" class="events-area">
+                <h2 class="section-title"><span>Upcoming</span> Events</h2>
+                <div class="events-content">
+
+                    <!-- Sunday Service Event -->
+                    <div class="event">
+                        <div class="event-date">
+                            <div class="event-day">25</div>
+                            <div class="event-month">Aug</div>
+                        </div>
+                        <div class="event-details">
+                            <h4>Sunday Service</h4>
+                            <p>Join us for our weekly Sunday service at 10:00 AM. All are welcome!</p>
+                        </div>
+                    </div>
+            
+                    <!-- Bible Study Event -->
+                    <div class="event">
+                        <div class="event-date">
+                            <div class="event-day">1</div>
+                            <div class="event-month">Sep</div>
+                        </div>
+                        <div class="event-details">
+                            <h4>Bible Study</h4>
+                            <p>Deepen your faith with our Bible Study group every Wednesday at 7:00 PM.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Youth Group Event -->
+                    <div class="event">
+                        <div class="event-date">
+                            <div class="event-day">5</div>
+                            <div class="event-month">Sep</div>
+                        </div>
+                        <div class="event-details">
+                            <h4>Youth Group</h4>
+                            <p>Youth group meetings every Friday at 6:00 PM. A place to connect and grow together.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Charity Fundraiser Event -->
+                    <div class="event">
+                        <div class="event-date">
+                            <span class="event-day">25</span>
+                            <span class="event-month">Aug</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Charity Fundraiser</h4>
+                            <p>Join us for a charity fundraiser to support our community projects. It will be a day of fun activities, food, and music.</p>
+                            <p><i class="fa fa-map-marker"></i> Central Park, Pretoria</p>
+                        </div>
+                    </div>
+            
+                    <!-- Annual Conference Event -->
+                    <div class="event">
+                        <div class="event-date">
+                            <span class="event-day">15</span>
+                            <span class="event-month">Sep</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Annual Conference</h4>
+                            <p>Our annual conference brings together thought leaders to discuss the future of our community. Don't miss it!</p>
+                            <p><i class="fa fa-map-marker"></i> City Hall, Pretoria</p>
+                        </div>
+                    </div>
+            
+                    <!-- Volunteer Appreciation Day Event -->
+                    <div class="event">
+                        <div class="event-date">
+                            <span class="event-day">30</span>
+                            <span class="event-month">Sep</span>
+                        </div>
+                        <div class="event-details">
+                            <h4>Volunteer Appreciation Day</h4>
+                            <p>A special event to thank all our volunteers for their hard work and dedication throughout the year.</p>
+                            <p><i class="fa fa-map-marker"></i> Community Center, Pretoria</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+                <title>Interactive Calendar</title>
+
+                <body div class="calendar">
+                        <div class="calendar-header">
+                            <h2 id="monthYear"></h2>
+                            <button id="prevMonth">Previous</button>
+                            <button id="nextMonth">Next</button>
+                        </div>
+                        <div class="days">
+                            <!-- Days will be generated dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div id="eventModal" class="modal">
+                        <input type="text" id="eventTitle" placeholder="Event Title (Subject)" />
+                        <textarea id="eventDetails" placeholder="Event Details"></textarea>
+                        <textarea id="Location" placeholder="Location"></textarea>
+                        <button id="saveEvent">Save</button>
+                        <button id="removeEvent" style="display:none;">Remove</button>
+                        <button id="cancelEvent">Cancel</button>
+                    </div>                   
+                    
+                </body>
+
+                <footer>
+                    <p>All Rights Reserved by Icarus Church</p>
+                </footer>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Create an intersection observer instance
+                        const observer = new IntersectionObserver((entries) => {
+                            entries.forEach(entry => {
+                                if (entry.isIntersecting) {
+                                    entry.target.classList.add('visible');
+                                    observer.unobserve(entry.target); // Stop observing once visible
+                                }
+                            });
+                        }, {
+                            threshold: 0.1 // Trigger when 10% of the element is visible
+                        });
+
+                        // Target all elements with the 'fade-in' class
+                        const fadeInElements = document.querySelectorAll('.fade-in');
+                        fadeInElements.forEach(element => {
+                            observer.observe(element);
+                        });
+                        });
+                </script>
+                <script>
+                    const calendar = document.querySelector('.calendar');
+                    const daysContainer = document.querySelector('.days');
+                    const monthYear = document.getElementById('monthYear');
+                    const prevMonth = document.getElementById('prevMonth');
+                    const nextMonth = document.getElementById('nextMonth');
+                    const eventModal = document.getElementById('eventModal');
+                    const eventTitle = document.getElementById('eventTitle');
+                    const eventDetails = document.getElementById('eventDetails');
+                    const eventLocation = document.getElementById('Location'); // Corrected variable name
+                    const saveEvent = document.getElementById('saveEvent');
+                    const removeEventBtn = document.getElementById('removeEvent');
+                    const cancelEventBtn = document.getElementById('cancelEvent');
+                    const upcomingEventsContainer = document.querySelector('.events-content'); // Upcoming Events container
+
+                    let currentMonth = new Date().getMonth();
+                    let currentYear = new Date().getFullYear();
+                    let selectedDate = null;
+
+                    const events = JSON.parse(localStorage.getItem('events')) || {};
+
+                    function updateCalendar() {
+                        daysContainer.innerHTML = '';
+                        const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+                        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                        monthYear.textContent = `${new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long' })} ${currentYear}`;
+
+                        for (let i = 0; i < firstDayOfMonth; i++) {
+                            daysContainer.appendChild(document.createElement('div'));
+                        }
+
+                        for (let day = 1; day <= daysInMonth; day++) {
+                            const dayElement = document.createElement('div');
+                            dayElement.textContent = day;
+                            dayElement.dataset.date = `${currentYear}-${currentMonth + 1}-${day}`;
+                            if (events[dayElement.dataset.date]) {
+                                const eventElement = document.createElement('div');
+                                eventElement.className = 'event';
+                                eventElement.textContent = events[dayElement.dataset.date].title;
+                                dayElement.appendChild(eventElement);
+                            }
+                            dayElement.addEventListener('click', () => {
+                                selectedDate = dayElement.dataset.date;
+                                if (events[selectedDate]) {
+                                    eventTitle.value = events[selectedDate].title;
+                                    eventDetails.value = events[selectedDate].details;
+                                    eventLocation.value = events[selectedDate].location; // Corrected the reference to `location`
+                                } else {
+                                    eventTitle.value = '';
+                                    eventDetails.value = '';
+                                    eventLocation.value = ''; // Clear the location field if no event
+                                }
+                                eventModal.classList.add('active');
+                                removeEventBtn.style.display = events[selectedDate] ? 'inline-block' : 'none'; // Show "Remove" if event exists
+                            });
+                            daysContainer.appendChild(dayElement);
+                        }
+                    }
+
+                    function updateUpcomingEvents() {
+                        upcomingEventsContainer.innerHTML = ''; // Clear previous upcoming events
+
+                        // Sort events by date
+                        const sortedEvents = Object.keys(events).sort((a, b) => new Date(a) - new Date(b));
+
+                        sortedEvents.forEach(date => {
+                            const event = events[date];
+                            const [year, month, day] = date.split('-');
+                            const eventElement = document.createElement('div');
+                            eventElement.className = 'event';
+
+                            eventElement.innerHTML = `
+                                <div class="event-date">
+                                    <div class="event-day">${day}</div>
+                                    <div class="event-month">${new Date(year, month - 1, day).toLocaleString('default', { month: 'short' })}</div>
+                                </div>
+                                <div class="event-details">
+                                    <h4 style="font-family: 'Times New Roman';">${event.title}</h4>
+                                    <p style="font-family: 'Times New Roman';">${event.details}</p>
+                                    <p style="font-family: 'Times New Roman';">${event.location}</p> <!-- Corrected tag from <p2> to <p> -->
+                                </div>
+                            `;
+                            upcomingEventsContainer.appendChild(eventElement);
+                        });
+                    }
+
+                    prevMonth.addEventListener('click', () => {
+                        currentMonth--;
+                        if (currentMonth < 0) {
+                            currentMonth = 11;
+                            currentYear--;
+                        }
+                        updateCalendar();
+                    });
+
+                    nextMonth.addEventListener('click', () => {
+                        currentMonth++;
+                        if (currentMonth > 11) {
+                            currentMonth = 0;
+                            currentYear++;
+                        }
+                        updateCalendar();
+                    });
+
+                    saveEvent.addEventListener('click', () => {
+                        if (eventTitle.value && eventDetails.value && eventLocation.value) { // Corrected condition
+                            events[selectedDate] = {
+                                title: eventTitle.value,
+                                details: eventDetails.value,
+                                location: eventLocation.value // Corrected the reference to `location`
+                            };
+                            localStorage.setItem('events', JSON.stringify(events));
+                            eventTitle.value = '';
+                            eventDetails.value = '';
+                            eventLocation.value = '';
+                            eventModal.classList.remove('active');
+                            updateCalendar();
+                            updateUpcomingEvents(); // Update Upcoming Events
+                        }
+                    });
+
+                    removeEventBtn.addEventListener('click', () => {
+                        if (events[selectedDate]) {
+                            delete events[selectedDate];
+                            localStorage.setItem('events', JSON.stringify(events));
+                            eventTitle.value = '';
+                            eventDetails.value = '';
+                            eventLocation.value = '';
+                            eventModal.classList.remove('active');
+                            updateCalendar();
+                            updateUpcomingEvents(); // Update Upcoming Events
+                        }
+                    });
+
+                    cancelEventBtn.addEventListener('click', () => {
+                        eventTitle.value = '';
+                        eventDetails.value = '';
+                        eventLocation.value = '';
+                        eventModal.classList.remove('active');
+                    });
+
+                    updateCalendar();
+                    updateUpcomingEvents(); // Initialize Upcoming Events on page load
+                </script>
+    </body>
+</html>
+

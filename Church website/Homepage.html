@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icarus Church</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h2><a href="#">Icarus Church</a></h2>
+        <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </header>
+
+    <section class="banner-area">
+		<div class="banner-area">
+			<div class="banner-content">
+        		<h1>Welcome to Icarus Church</h1>
+        		<h4>Discover the power of faith and community</h4>
+				<a href="getStartedpage.html" class="banner-btn">Get Started</a>
+			</div>
+		</div>
+		
+    </section>
+
+    <section class="about-area fade-in" id="about">
+        <h3 class="section-title">About <span>Us</span></h3>
+        <div class="about-content">
+            <div class="about-right">
+                <h2>We are Taking Small Steps to Make Earth a Better Planet</h2>
+                <p>Our organization aims to bring God and Jesus to as many people as possible. The website aims to bring the gospel to as many people without even needing to be close to our church.</p>
+                <p><i class="fa fa-arrow-right"></i> Bible verses to enlighten members</p>
+                <p><i class="fa fa-arrow-right"></i> Food drives to feed the needy</p>
+                <p><i class="fa fa-arrow-right"></i> Audios to listen to when you are traveling or free</p>
+                <p><i class="fa fa-arrow-right"></i> A community where you can send prayer requests</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="msg-area">
+        <div class="quote-display">
+            <h2>Quote of the Day</h2>
+            <p id="quote-display">"But first seek the kingdom of God and his righteousness, and all these things will be added to you (Matthew 6:33)"</p>
+        </div>
+
+        <div class="submit-area">
+            <h3>What's Your Quote of the Day?</h3>
+            <form id="scripture-form">
+                <label for="verse-input">Verse:</label>
+                <input type="text" id="verse-input" placeholder="Enter your Bible verse here" required>
+                <label for="scripture-input">Scripture:</label>
+                <input type="text" id="scripture-input" placeholder="Enter your piece here" required>
+                <button type="submit">Submiteth</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="services-area fade-in" id="services">
+        <h3 class="section-title">Our <span>Offers</span></h3>
+        <ul class="services-content">
+            <li>
+                <img alt="Prayer Service" src="images/prayer.jpg">
+                <h4>Prayer</h4>
+                <p>Join our prayer groups and find spiritual support.</p>
+            </li>
+            <li>
+                <img alt="Offering Service" src="images/offering.jpg">
+                <h4>Offerings</h4>
+                <p>Contribute to our community and help those in need.</p>
+            </li>
+            <li>
+                <img alt="Blessings Service" src="images/blessings.jpg">
+                <h4>Blessings</h4>
+                <p>Receive blessings and spiritual guidance from our leaders.</p>
+            </li>
+        </ul>
+    </section>
+
+    
+    <section class="contact-area" id="contact">
+        <h3 class="section-title">Our <span>Contact</span></h3>
+        <ul class="contact-content">
+            <li>
+                <i class="fa fa-map-marker"></i>
+                <p>294 Paul Kruger St<br>Pretoria Central 0002</p>
+            </li>
+            <li>
+                <i class="fa fa-phone"></i>
+                <p>+123 456 789<br>+789 456 123</p>
+            </li>
+            <li>
+                <i class="fa fa-envelope"></i>
+                <p>info@bishop.com<br>yourdomain@website.com</p>
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>All Rights Reserved by Icarus Church</p>
+    </footer>
+
+    <script>
+        // Handle form submission
+        document.getElementById('scripture-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Get the user input
+            const userVerse = document.getElementById('verse-input').value;
+            const userScripture = document.getElementById('scripture-input').value;
+
+            // Update the Quote of the Day with the user's verse and scripture
+            document.getElementById('quote-display').textContent = `"${userVerse} (${userScripture})"`;
+
+            // Optionally, clear the input fields
+            document.getElementById('verse-input').value = '';
+            document.getElementById('scripture-input').value = '';
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create an intersection observer instance
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            // Target all elements with the 'fade-in' class
+            const fadeInElements = document.querySelectorAll('.fade-in');
+            fadeInElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
